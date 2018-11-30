@@ -3,12 +3,24 @@ package edu.uoc.plagrupo3.bookscpla4equipo3;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.LayoutInflaterCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.context.IconicsLayoutInflater2;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,12 +48,66 @@ public class ItemListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LayoutInflaterCompat.setFactory2(getLayoutInflater(), new IconicsLayoutInflater2(getDelegate()));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
+
+        //Preparación opciones de menú con sus iconos. En recurso String están los nombres de las opciones
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.MenuListarLibros)
+                .withIcon(new IconicsDrawable(this)
+                        .icon(FontAwesome.Icon.faw_th_list)
+                        .sizeDp(24));
+        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.MenuMisFavoritos)
+                .withIcon(new IconicsDrawable(this)
+                        .icon(FontAwesome.Icon.faw_user_plus)
+                        .sizeDp(24));
+        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.MenuMisReservas)
+                .withIcon(new IconicsDrawable(this)
+                        .icon(FontAwesome.Icon.faw_user_tag)
+                        .sizeDp(24));
+        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.MenuAñadirLibro)
+                .withIcon(new IconicsDrawable(this)
+                        .icon(FontAwesome.Icon.faw_plus)
+                        .sizeDp(24));
+        PrimaryDrawerItem item5 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.MenuConfiguracion)
+                .withIcon(new IconicsDrawable(this)
+                        .icon(FontAwesome.Icon.faw_cog)
+                        .sizeDp(24));
+        PrimaryDrawerItem item6 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.MenuCompartirconFacebook)
+                .withIcon(new IconicsDrawable(this)
+                        .icon(FontAwesome.Icon.faw_facebook)
+                        .sizeDp(24));
+        PrimaryDrawerItem item7 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.MenuCompartirconWhatsapp)
+                .withIcon(new IconicsDrawable(this)
+                        .icon(FontAwesome.Icon.faw_whatsapp)
+                        .sizeDp(24));
+
+//create the drawer and remember the `Drawer` result object
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(toolbar)
+                .addDrawerItems(
+                        item1,
+                        item2,
+                        item3,
+                        item4,
+                        item5,
+                        new DividerDrawerItem(),
+                        item6,
+                        item7
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        // do something with the clicked item :D
+                        return true;
+                    }
+                })
+                .build();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

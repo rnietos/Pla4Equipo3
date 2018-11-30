@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">BooksCPla4Equipo3</string>
     <string name="title_item_detail">Item Detail</string>
+    <string name="MenuListarLibros">Listar Libros</string>
+    <string name="MenuMisFavoritos">Mis Favoritos</string>
+    <string name="MenuMisReservas">Mis Reservas</string>
+    <string name="MenuAñadirLibro">Añadir Libro</string>
+    <string name="MenuConfiguracion">Configuración</string>
+    <string name="MenuCompartirconFacebook">Compartir con Facebook</string>
+    <string name="MenuCompartirconWhatsapp">Compartir con WhasApp</string>
 </resources>
